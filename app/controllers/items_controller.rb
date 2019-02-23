@@ -12,30 +12,24 @@ class ItemsController < ApplicationController
         hits: 20,
       })
       
-      results.each do |result|
+      binding.pry
+      
+      # if results == nil
+      
+      results.each do |result| 
         # 扱いやすいようにItemとしてインスタンス作成する。（保存はしない）
-        item = Item.new(read(result))
+        item = Item.find_or_initialize_by(read(result))
+        # newにしないのは、item_idをunwantで利用するためにとっとくから
         @items << item
         
         # 今後want haveに追加されたときだけItemインスタンスを保存する
       end
     end
   end
-    
-  private
-    
-  def read(result)
-    code = result["itemCode"]
-    name = result["itemName"]
-    url = result["itemUrl"]
-    image_url = result["mediumImageUrls"].first["imageUrl"].gsub("?_ex=128.128","")
-    
-    {
-      code: code,
-      name: name,
-      url: url,
-      image_url: image_url,
-    }
+  
+  def show
+    @item = Item.find(params[:id])
+    @want_users = @item.want_users
   end
+
 end 
-    
