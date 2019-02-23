@@ -36,19 +36,20 @@ footer{
   margin: auto;
   display: table;
 }
-.cover .cover-innter .cover-contents{
+
+
+.cover .cover-inner .cover-contents{
   display:  table-cell;
   vertical-align: middle;
   text-align: center;
   position: relative;
-  
 }
 
 .cover .cover-inner .cover-contents h1 {
   margin: 0 0 20px 0;
   color: #fff;
   font-weight: bold;
-  letter-spacing:0.15em; 
+  letter-spacing: 0.15em; 
 }
 
 
