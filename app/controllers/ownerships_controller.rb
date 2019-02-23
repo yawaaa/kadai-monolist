@@ -11,13 +11,12 @@ class OwnershipsController < ApplicationController
       # ここで@item.idが絶対存在するようになる
     end
     
-    # want関係として保存
     if params[:type] == "Want"
       current_user.want(@item)
-      flash[:success] = "商品を" + params[:type] + "しました"
+      flash[:success] = "商品をWantしました"
     elsif params[:type] == "Have"
-      # current_user.have(@item)
-      flash[:success] = "商品を" + params[:type] + "しました"
+      current_user.have(@item)
+      flash[:success] = "商品をHaveしました"
     end
     
     redirect_back(fallback_location: root_path)
@@ -30,7 +29,7 @@ class OwnershipsController < ApplicationController
       current_user.unwant(@item)
       flash[:success] = "商品の Want を解除しました。"
     elsif params[:type] == "Have"
-      # current_user.donthave(@item)
+      current_user.donthave(@item)
       flash[:success] = "商品の Have を解除しました。"
     end
     

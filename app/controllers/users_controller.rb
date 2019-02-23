@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @items = @user.items.uniq  # wantとhaveで2個でないように。
     @count_want = @user.want_items.count
+    @count_have = @user.have_items.count
   end
 
   def new
